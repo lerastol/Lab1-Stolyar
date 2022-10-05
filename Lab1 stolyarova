@@ -1,0 +1,29 @@
+import csv
+
+kolzap = 0
+bol30 = 0
+search = input('Введите автора: ')
+with open('D:\итмо\прога питон\Lab-1-main\books.csv',encoding='windows-1251', newline='') as csvfile:
+    vot = list(csv.reader(csvfile, delimiter=';'))
+    for row in vot[1:]:
+        kolzap+= 1
+        if len(row[1]) > 30:#поиск где длиннее 30 символов название
+            bol30 += 1
+        itog = row[4].find(search)#поиск по автору и году выдачи(2016-2018) 
+        if search in row[4]:
+            if 2016<= (int(row[4]))<= 2018:#доделать это!! вроде сделала
+                print(row[1])
+                
+        #допзадание        
+        #отсортировать файл по !популярности! от большего к меньшему
+        #взять первые 20 книг и вывести на экран
+
+print('\n''Кол-во записей в файле:', kolzap)
+print('Строка "Название" длиннее 30:', bol30)
+
+with open('books.txt', 'w') as f:
+    for i, note in enumerate(vot[320:340]):
+        line = str(i + 1) + ' ' + note[3] + ' ' + note[1] + ' - ' + note[6][6:10] + '\n'
+        f.write(line)
+        
+f.close()
